@@ -1,0 +1,302 @@
+.accordion {
+
+  & .accordion-item {
+
+    overflow: hidden;
+    //-webkit-border-radius: 6px;
+    //-moz-border-radius: 6px;
+    //-ms-border-radius: 6px;
+    //-o-border-radius: 6px;
+    //border-radius: 6px;
+    @include border-radius($border-radius);
+
+    & .accordion-item-head {
+      display: table;
+      padding: .5rem 1rem;
+      width: 100%;
+      overflow: hidden;
+      //-webkit-transition: all 0.3s;
+      //-moz-transition: all 0.3s;
+      //-ms-transition: all 0.3s;
+      //-o-transition: all 0.3s;
+      //transition: all 0.3s;
+      @include transition(all 0.3s);
+
+      & .accordion-item-icon {
+        display: table-cell;
+        vertical-align: middle;
+        line-height: 0;
+        padding-left: .5rem;
+
+        & > i {
+          display: inline-block;
+          font-size: 2rem;
+        }
+
+      }
+
+      & .accordion-item-title {
+        display: table-cell;
+        vertical-align: middle;
+        width: 100%;
+        font-size: 1rem;
+        font-weight: $font-weight-base;
+      }
+
+      & .accordion-item-mode {
+        @include font-icon();
+        font-size: 1.3rem;
+
+        &:before {
+          content: "\f28e";
+        }
+
+      }
+
+      &.collapsed {
+
+        & .accordion-item-mode {
+          @include font-icon();
+
+          &:before {
+            content: "\f2c2";
+          }
+
+        }
+
+      }
+
+      &:hover {
+        @include transition(all 0.3s);
+        cursor: pointer;
+      }
+
+    }
+
+    & .accordion-item-body {
+
+      & .accordion-item-content, & > span {
+        padding: .75rem 1.25rem;
+      }
+
+      & .accordion-item-content > p, & > span > p {
+        &:last-child {
+          padding-bottom: 0;
+          margin-bottom: 0;
+          font-weight: $font-weight-light;
+        }
+      }
+
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+  }
+
+  &.accordion-default {
+    & .accordion-item {
+      margin-bottom: 1rem;
+    }
+  }
+
+  &.accordion-bordered {
+    & .accordion-item {
+
+      &:not(:last-child) {
+        border-bottom: 0;
+      }
+
+      &:not(:first-child):not(:last-child) {
+        @include border-radius(0);
+      }
+
+      &:last-child {
+        @include border-top-radius(0);
+      }
+
+      &:first-child {
+        @include border-bottom-radius(0);
+      }
+
+    }
+  }
+
+  &.accordion-section {
+
+    & .accordion-item {
+      margin-bottom: 2rem;
+      border: none;
+
+      & .accordion-item-head {
+
+        &.collapsed {
+          & .accordion-item-mode {
+            & > i {
+              &:before {
+                content: "\f2c2";
+              }
+            }
+          }
+        }
+
+      }
+
+      & .accordion-item-body {
+        & > span, & .accordion-item-content {
+          padding-top: 0;
+        }
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+    }
+
+  }
+
+  &.accordion-toggle-arrow {
+    & .accordion-item {
+
+      & .accordion-item-head {
+
+        & .accordion-item-mode {
+          @include font-icon();
+          font-size: 1.3rem;
+
+          &:before {
+            content: "\f110";
+          }
+
+        }
+
+        &.collapsed {
+
+          & .accordion-item-mode {
+            @include font-icon();
+            &:before {
+              content: "\f113";
+            }
+
+          }
+
+        }
+
+      }
+
+    }
+  }
+
+  &.accordion-padding-lg {
+    & .accordion-item {
+      & .accordion-item-head {
+        padding: 1rem 1.5rem;
+      }
+    }
+
+  }
+
+  &.accordion-bordered, &.accordion-default {
+    & .accordion-item {
+      border: $border-width solid $gray-400;
+      background-color: $white;
+
+      & .accordion-item-head {
+
+        &.collapsed {
+          background-color: $white;
+        }
+
+        background-color: $gray-200;
+
+        &:hover {
+          background-color: $gray-300;
+        }
+
+        & .accordion-item-mode {
+          color: $gray-400;
+        }
+
+      }
+
+      & .accordion-item-body {
+        border-top: $border-width solid $gray-200;
+      }
+
+    }
+  }
+
+  &.accordion-solid {
+    & .accordion-item {
+      & .accordion-item-head {
+
+        &.collapsed {
+          background-color: #f7f8fa;
+        }
+
+        background-color: #f4f5f8;
+
+        &:hover {
+          background-color: #f7f8fa;
+        }
+
+      }
+    }
+  }
+
+  &.accordion-section {
+   & .accordion-item {
+
+     & .accordion-item-head {
+       background-color: #f7f8fa;
+       color: #716aca !important;
+
+       & .accordion-item-mode {
+         color: #716aca !important;
+       }
+
+       &.collapsed {
+         color: #837dd1 !important;
+         & .accordion-item-mode {
+           color: #837dd1 !important;
+         }
+       }
+
+     }
+
+     & .accordion-item-body {
+       border-top: none;
+       background-color: #f7f8fa;
+     }
+
+   }
+  }
+
+  &.accordion-item-primary {
+    border: $border-width solid #5867dd !important;
+    
+    & .accordion-item-head {
+      background-color: #4354d9 !important;
+      &:hover {
+        background-color: #4354d9 !important;
+      }
+      & .accordion-item-mode {
+        color: #ffffff !important;
+      }
+      &.collapsed {
+        background-color: #5867dd !important;
+        & .accordion-item-mode {
+          color: #ffffff !important;
+        }
+      }
+      & > span {
+        color: #ffffff !important;
+      }
+    }
+    
+  }
+
+}
+
